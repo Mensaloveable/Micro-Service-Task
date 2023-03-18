@@ -1,6 +1,6 @@
 package com.loveable.billingworker.dto;
 
-import com.loveable.billingworker.Status;
+import com.loveable.billingworker.enums.Status;
 import lombok.*;
 
 import java.math.BigDecimal;

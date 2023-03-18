@@ -1,6 +1,6 @@
 package com.loveable.billingworker.service.impl;
 
-import com.loveable.billingworker.Status;
+import com.loveable.billingworker.enums.Status;
 import com.loveable.billingworker.dto.BillingResponse;
 import com.loveable.billingworker.service.ProcessPayment;
 import org.springframework.stereotype.Service;

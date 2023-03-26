@@ -30,21 +30,6 @@ services:
     volumes:
       - postgres:/data/postgres
     restart: unless-stopped
-#  postgres-worker:
-#    container_name: postgres
-#    image: postgres
-#    mem_reservation: 1G
-#    environment:
-#      POSTGRES_USER: ${POSTGRES_USER}
-#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-#      GDATA: /data/postgres
-#    ports:
-#      - "5433:5432"
-#    networks:
-#      - postgres
-#    volumes:
-#      - postgres:/data/postgres
-#    restart: unless-stopped
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

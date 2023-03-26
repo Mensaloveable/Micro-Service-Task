@@ -5,10 +5,7 @@ import com.loveable.customerservice.service.WalletService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -23,5 +20,11 @@ public class WalletController {
         BigDecimal amount = new BigDecimal(amountStr);
         BillingResponse billingResponse = walletService.fundWallet(amount);
         return new ResponseEntity<>(billingResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/balance")
+    public ResponseEntity<String> getBalance(){
+        String balance = walletService.getBalance();
+        return new ResponseEntity<>(balance, HttpStatus.OK);
     }
 }

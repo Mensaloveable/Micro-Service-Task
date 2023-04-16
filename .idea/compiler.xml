@@ -12,11 +12,6 @@
         <module name="customerService" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="billingService" target="17" />
-      <module name="billingWorker" target="17" />
-      <module name="customerService" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

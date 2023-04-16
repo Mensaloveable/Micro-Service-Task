@@ -6,6 +6,7 @@ import com.loveable.customerservice.repository.UserRepository;
 import com.loveable.customerservice.service.WalletService;
 import com.loveable.customerservice.utils.Feign;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +23,31 @@ public class WalletServiceImpl implements WalletService {
         return userRepository.findByEmail(authentication)
                 .orElseThrow(() -> new RuntimeException("User not authorized"));
     }
-    @Override
+    /*@Override
     public BillingResponse fundWallet(BigDecimal amount) {
         User user = getLoggedInUser();
-        BillingResponse response = feign.fund(user.getId(), amount);
+        String response = feign.fund(user.getId(), amount);
+        user.setAccountBalance(user.getAccountBalance().add(amount));
+        return response;
+    }*/
+
+    @Override
+    public String fundWallet(BigDecimal amount) {
+        User user = getLoggedInUser();
+        String response = feign.fund(user.getId(), amount);
         user.setAccountBalance(user.getAccountBalance().add(amount));
         return response;
     }
 
+    @Override
+    @RabbitListener(queues = {"${rabbitmq.queue.consume}"})
+    public BillingResponse completeTransaction(BillingResponse response) {
+        System.out.println("To customer service");
+        User user = getLoggedInUser();
+        user.setAccountBalance(response.getAmount().add(user.getAccountBalance()));
+        userRepository.save(user);
+        return response;
+    }
     @Override
     public String getBalance() {
         User user = getLoggedInUser();

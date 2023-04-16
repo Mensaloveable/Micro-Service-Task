@@ -15,10 +15,18 @@ import java.math.BigDecimal;
 public class WalletController {
     private final WalletService walletService;
 
-    @PostMapping("/{amount}")
+    /*@PostMapping("/{amount}")
     public ResponseEntity<BillingResponse> fundWallet(@PathVariable("amount") String amountStr) {
         BigDecimal amount = new BigDecimal(amountStr);
         BillingResponse billingResponse = walletService.fundWallet(amount);
+        return new ResponseEntity<>(billingResponse, HttpStatus.OK);
+    }*/
+
+    @PostMapping("/{amount}")
+    public ResponseEntity<String> fundWallet(@PathVariable("amount") String amountStr) {
+        BigDecimal amount = new BigDecimal(amountStr);
+        String billingResponse = walletService.fundWallet(amount);
+//        walletService.completeTransaction()
         return new ResponseEntity<>(billingResponse, HttpStatus.OK);
     }
 

@@ -3,3 +3,16 @@ server:
 spring:
   application:
     name: Billing-Worker
+
+rabbitmq:
+  queue:
+    consume: billing_service
+    name: billing_worker
+  exchange:
+    consume: billing_service_exchange
+    name: billing_worker_exchange
+  routing:
+    consume: billing_service_routing_key
+    key: billing_worker_routing_key
+
+#  docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3.11.10-management

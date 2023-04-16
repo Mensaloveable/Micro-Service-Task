@@ -12,9 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/process")
 public class PaymentController {
     private final ProcessPayment processPayment;
-    @PostMapping()
-    public ResponseEntity<BillingResponse> process(@RequestBody BillingResponse response) {
-        BillingResponse billingResponse = processPayment.processPayment(response);
-        return new ResponseEntity<>(billingResponse, HttpStatus.OK);
-    }
+//    @PostMapping()
+//    public ResponseEntity<BillingResponse> process(@RequestBody BillingResponse response) {
+//        BillingResponse billingResponse = processPayment.processPayment(response);
+//        return new ResponseEntity<>(billingResponse, HttpStatus.OK);
+//    }
+
+    /*@PostMapping()
+    public ResponseEntity<String > process(@RequestBody BillingResponse response) {
+        processPayment.processPayment(response);
+        System.out.println(response.toString());
+        return new ResponseEntity<>("Payment completed", HttpStatus.OK);
+    }*/
 }

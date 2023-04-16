@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Builder
+@ToString
 public class Billing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

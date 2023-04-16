@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Builder
+@ToString
 public class BillingResponse {
     private Long customerId;
     private BigDecimal amount;
